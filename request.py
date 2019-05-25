@@ -1,4 +1,6 @@
+# -*- coding: utf-8 -*-
 import urllib.request as ur
+import hashlib
 import json
 
 #lendo a url
@@ -41,6 +43,15 @@ decifrado = conv
 print(decifrado)
 
 #encodar json
+h = hashlib.sha1()
+h.update(decifrado.encode('utf-8'))
+hash2 = (h.hexdigest())
+
+resumo_criptografico = hash2
+
+print(hash2)
+
+#encodar json
 texto = {
 
 'numero_casas':numero_casas,
@@ -51,11 +62,9 @@ texto = {
 }
 encodar_json = json.dumps(texto)
 
-jsonfile2 = open('answer2.json', 'w+')
+jsonfile2 = open('answer.json', 'w+')
 jsonfile2.write(encodar_json)
 jsonfile2.close()
-
-
 
 #print(ler_json["numero_casas"])
 
