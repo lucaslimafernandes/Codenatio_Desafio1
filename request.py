@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+
 import urllib.request as ur
 import hashlib
 import json
@@ -71,10 +71,13 @@ jsonfile2.close()
 
 #enviar arquivo
 local_envio = 'https://api.codenation.dev/v1/challenge/dev-ps/submit-solution?token=d8a2c7d19ed638555dae59b9ef594f1dc5378e27'
-jsonfile3 = {'file': open('answer.json', 'rb')}
+jsonfile3 = {'answer': open('answer.json', 'rb')}
+jsonfile4 = open('answer.json', 'r')
 query_envio = requests.post(local_envio, files=jsonfile3)
 
-print(query_envio.text)
+print(jsonfile3)
+print(query_envio.json)
+print(query_envio.status_code)
 
 
 #envio = ur.urlopen(local_envio, query_envio)
