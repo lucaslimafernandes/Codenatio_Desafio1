@@ -2,6 +2,9 @@
 import urllib.request as ur
 import hashlib
 import json
+import requests
+
+
 
 #lendo a url
 f = ur.urlopen("https://api.codenation.dev/v1/challenge/dev-ps/generate-data?token=d8a2c7d19ed638555dae59b9ef594f1dc5378e27")
@@ -66,13 +69,24 @@ jsonfile2 = open('answer.json', 'w+')
 jsonfile2.write(encodar_json)
 jsonfile2.close()
 
-#print(ler_json["numero_casas"])
+#enviar arquivo
+local_envio = 'https://api.codenation.dev/v1/challenge/dev-ps/submit-solution?token=d8a2c7d19ed638555dae59b9ef594f1dc5378e27'
+jsonfile3 = {'file': open('answer.json', 'rb')}
+query_envio = requests.post(local_envio, files=jsonfile3)
+
+print(query_envio.text)
 
 
+#envio = ur.urlopen(local_envio, query_envio)
+#envio2 = envio.read()
+#envio.close()
+#print(envio2)
+
+#resposta =
 
 
 #TOKEN = d8a2c7d19ed638555dae59b9ef594f1dc5378e27
-
+#https://api.codenation.dev/v1/challenge/dev-ps/submit-solution?token=d8a2c7d19ed638555dae59b9ef594f1dc5378e27
 
 
 
